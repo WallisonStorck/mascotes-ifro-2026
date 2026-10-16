@@ -1,0 +1,12 @@
+GALERIA IFRO 2026 - PACOTE COMPLETO PARA GITHUB PAGES
+
+Contem index.html, mascotes.json e 19 imagens originais na pasta images/.
+
+COMO ATUALIZAR:
+1. No repositorio WallisonStorck/mascotes-ifro-2026, substitua index.html e mascotes.json na raiz.
+2. Adicione a pasta images com todos os 19 arquivos deste pacote.
+3. Confira a publicacao em Settings > Pages e aguarde o Actions ficar verde.
+4. Acesse https://wallisonstorck.github.io/mascotes-ifro-2026/ e teste os 19 cards.
+5. Votacao: botao em breve pelo SUAP, sem Forms e sem aviso de email institucional.
+
+Nao envie os PDFs nem o HTML antigo da pasta de entregas.
