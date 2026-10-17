@@ -132,6 +132,13 @@
       "mascote": "Zig&Zizi",
       "justificativa": "A abelha foi escolhida como mascote do curso Técnico em Alimentos por representar características importantes para nossa formação, como dedicação, organização, responsabilidade, trabalho em equipe e cooperação. Assim como em uma colmeia, cada abelha tem sua função, e cada estudante também tem sua importância para alcançar bons resultados.\n\nNa área de Alimentos, aprendemos sobre diferentes etapas da produção, desde a escolha da matéria-prima até o processamento, armazenamento, controle de qualidade e segurança dos alimentos. Por isso, a abelha representa bem a ideia de produção, cuidado e transformação.",
       "imagem": "images/mascote-19.jpeg"
+    },
+    {
+      "id": "PROPOSTA-21",
+      "curso": "Técnico em Agropecuária Integrado ao Ensino Médio",
+      "mascote": "Esquilete",
+      "justificativa": "A escolha do esquilo representa características como inteligência, agilidade, organização e capacidade de adaptação, qualidades importantes para a formação de um técnico em Agropecuária. A cor verde simboliza a natureza, o cultivo e a sustentabilidade, enquanto as botas, a calça jeans e a ferramenta remetem às atividades práticas realizadas no campo. Os símbolos presentes no caderno representam a integração entre agricultura, pecuária e tecnologia. Dessa forma, o mascote expressa a união entre conhecimento, inovação e trabalho rural, valorizando a profissão e fortalecendo a identidade, o orgulho e o sentimento de pertencimento dos estudantes ao curso.",
+      "imagem": "images/mascote-20.png"
     }
   ]
 }
