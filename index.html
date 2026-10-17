@@ -608,13 +608,82 @@
 
     .heroVote {
       display: block !important;
-      cursor: default !important;
+      cursor: pointer !important;
       text-decoration: none
     }
 
     .heroVote .go {
-      display: inline-block;
-      cursor: default
+      display: inline-flex;
+      cursor: pointer
+    }
+
+    /* Avisos de votação: visíveis e legíveis em computador e celular. */
+    .regraVoto {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 14px 16px;
+      border-radius: 13px;
+      border: 1px solid #e8d7a9;
+      background: #fff9e9;
+      color: #654515;
+      font-size: 14px;
+      line-height: 1.55;
+      margin-top: 19px
+    }
+
+    .regraVoto strong {
+      color: #603e0b
+    }
+
+    .regraVoto .simbolo {
+      font-size: 19px;
+      line-height: 1.2;
+      flex: none
+    }
+
+    .regraVoto--hero {
+      background: #f4faf4;
+      border-color: #d9e7db;
+      color: #24543b;
+      margin-top: 15px;
+      font-size: 12px
+    }
+
+    .regraVoto--hero strong {
+      color: #164c30
+    }
+
+    .regraVoto--galeria {
+      margin: 0 0 22px
+    }
+
+    .regraVoto--rodape {
+      background: #ffffff15;
+      border-color: #ffffff55;
+      color: #fff;
+      margin: 12px 0 0;
+      max-width: 650px
+    }
+
+    .regraVoto--rodape strong {
+      color: #fff
+    }
+
+    .heroVote .go {
+      align-items: center
+    }
+
+    @media(max-width:640px) {
+      .regraVoto {
+        font-size: 12px;
+        padding: 12px;
+        gap: 8px
+      }
+
+      .regraVoto--hero {
+        font-size: 12px
+      }
     }
   </style>
 </head>
@@ -624,7 +693,7 @@
     <div class="wrap heroInner">
       <div class="top">
         <div class="brand"><span class="brandMark">✦</span><span>IFRO <span style="font-weight:400;opacity:.75">/ Campus
-              Ariquemes</span></span></div><span class="tag">Concurso de Mascotes • 2026</span>
+              Ariquemes</span></span></div>
       </div>
       <div class="heroCall">
         <div>
@@ -632,10 +701,12 @@
           <h1>Um mascote para<br>chamar de nosso.</h1>
           <p>Conheça as propostas homologadas que podem representar o seu curso. Cada criação conta uma história —
             descubra a sua favorita.</p>
-        </div>
-        <div class="heroVote" id="votoHero" aria-label="Votação institucional em preparação"><span class="mini">🗳️
-            Votação oficial</span><span class="big">Já escolheu o mascote do seu curso?</span><span class="go">Votação
-            pelo SUAP — link em breve</span></div>
+        </div><a class="heroVote" id="votoHero" href="https://suap.ifro.edu.br/eventos/inscricao/1/1324/"
+          target="_blank" rel="noopener noreferrer" aria-label="Acessar votação oficial no SUAP"><span class="mini">🗳️
+            Votação oficial pelo SUAP</span><span class="big">Já escolheu o mascote do seu curso?</span><span
+            class="go">VOTAR AGORA ↗</span><span class="regraVoto regraVoto--hero"><span
+              class="simbolo">⚠️</span><span><strong>Um único voto!</strong> Vote somente em um mascote do seu próprio
+              curso. Votos em mais de uma candidatura ou em outro curso serão desconsiderados.</span></span></a>
       </div>
     </div>
   </header>
@@ -658,12 +729,6 @@
         </div><button class="btn secondary" id="trocar">← Trocar curso</button>
       </div>
       <div class="cards" id="cards"></div>
-      <div class="vote" id="votacao">
-        <div>
-          <h3>Já escolheu seu favorito?</h3>
-          <p>A votação será realizada pelo SUAP. Aguarde a divulgação do link.</p>
-        </div><a id="linkVoto" href="#" target="_blank" rel="noopener noreferrer">Ir para votação ↗</a>
-      </div>
     </section>
   </main>
   <footer>Instituto Federal de Educação, Ciência e Tecnologia de Rondônia • Campus Ariquemes<br>Concurso de Mascotes dos
@@ -671,7 +736,7 @@
   <div class="modal" id="modal" role="dialog" aria-label="Imagem ampliada"><button class="close" id="fechar">✕
       Fechar</button><img id="ampliada" alt="Mascote ampliado"></div>
   <script>
-    let dados = [], voto = ''; const $ = id => document.getElementById(id); function el(t, c, txt) { const x = document.createElement(t); if (c) x.className = c; if (txt !== undefined) x.textContent = txt; return x } function iniciar(d) { dados = d.itens || []; voto = d.votacao || ''; $('votoHero').style.display = 'block'; const cursos = [...new Set(dados.map(x => x.curso))].sort((a, b) => a.localeCompare(b, 'pt-BR')); $('curso').innerHTML = ''; const p = el('option', '', cursos.length ? 'Selecione seu curso' : 'Nenhum curso disponível'); p.value = ''; $('curso').append(p); cursos.forEach(c => { const o = el('option', '', c); o.value = c; $('curso').append(o) }); $('ver').disabled = !$('curso').value; if (!cursos.length) $('erro').textContent = 'As propostas ainda não estão disponíveis. Volte em breve.'; } function falha(e) { $('curso').innerHTML = '<option>Não foi possível carregar</option>'; $('erro').textContent = 'Erro ao carregar as propostas. Confira a publicação e tente novamente.'; }
+    let dados = [], voto = ''; const $ = id => document.getElementById(id); function el(t, c, txt) { const x = document.createElement(t); if (c) x.className = c; if (txt !== undefined) x.textContent = txt; return x } function iniciar(d) { dados = d.itens || []; voto = d.votacao || 'https://suap.ifro.edu.br/eventos/inscricao/1/1324/'; $('votoHero').style.display = 'block'; const cursos = [...new Set(dados.map(x => x.curso))].sort((a, b) => a.localeCompare(b, 'pt-BR')); $('curso').innerHTML = ''; const p = el('option', '', cursos.length ? 'Selecione seu curso' : 'Nenhum curso disponível'); p.value = ''; $('curso').append(p); cursos.forEach(c => { const o = el('option', '', c); o.value = c; $('curso').append(o) }); $('ver').disabled = !$('curso').value; if (!cursos.length) $('erro').textContent = 'As propostas ainda não estão disponíveis. Volte em breve.'; } function falha(e) { $('curso').innerHTML = '<option>Não foi possível carregar</option>'; $('erro').textContent = 'Erro ao carregar as propostas. Confira a publicação e tente novamente.'; }
     $('curso').addEventListener('change', () => { $('ver').disabled = !$('curso').value }); $('ver').addEventListener('click', () => {
       const curso = $('curso').value; if (!curso) return; $('tituloCurso').textContent = curso; const propostas = dados.filter(x => x.curso === curso); $('total').textContent = propostas.length + ' proposta' + (propostas.length === 1 ? ' homologada' : 's homologadas'); $('cards').replaceChildren(); propostas.forEach((x, i) => {
         const card = el('article', 'card'), box = el('div', 'artBox'), img = el('img'); img.src = x.imagem; img.alt = 'Ilustração do mascote ' + x.mascote; img.loading = 'lazy'; img.referrerPolicy = 'no-referrer'; img.onerror = () => { img.alt = 'Imagem indisponível — confira o arquivo de imagem'; img.style.opacity = '.35' }; box.append(img); box.addEventListener('click', () => { $('ampliada').src = x.imagem; $('ampliada').alt = img.alt; $('modal').classList.add('open') }); const content = el('div', 'content'); const justificativa = el('p', 'justificativa', x.justificativa || 'Justificativa não informada.');
@@ -681,7 +746,7 @@
         card.append(box, content); $('cards').append(card);
         requestAnimationFrame(() => { const estilo = getComputedStyle(justificativa); const alturaLinha = parseFloat(estilo.lineHeight) || 22; const linhas = justificativa.scrollHeight / alturaLinha; if (linhas > 10.3) botao.classList.add('visivel') })
       }); if (!propostas.length) $('cards').append(el('div', 'empty', 'Não há propostas disponíveis para este curso.')); $('entrada').style.display = 'none'; $('galeria').style.display = 'block'; if (/^https:\/\//.test(voto)) { $('linkVoto').href = voto; $('votacao').style.display = 'flex' } window.scrollTo({ top: 0, behavior: 'smooth' })
-    }); $('trocar').addEventListener('click', () => { $('galeria').style.display = 'none'; $('entrada').style.display = 'block'; window.scrollTo({ top: 0, behavior: 'smooth' }) }); function fechar() { $('modal').classList.remove('open'); $('ampliada').src = '' } $('fechar').addEventListener('click', fechar); $('modal').addEventListener('click', e => { if (e.target === $('modal')) fechar() }); document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar() }); fetch('./mascotes.json', { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(d => iniciar({ ...d, votacao: '' })).catch(falha)
+    }); $('trocar').addEventListener('click', () => { $('galeria').style.display = 'none'; $('entrada').style.display = 'block'; window.scrollTo({ top: 0, behavior: 'smooth' }) }); function fechar() { $('modal').classList.remove('open'); $('ampliada').src = '' } $('fechar').addEventListener('click', fechar); $('modal').addEventListener('click', e => { if (e.target === $('modal')) fechar() }); document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar() }); fetch('./mascotes.json', { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json() }).then(d => iniciar({ ...d, votacao: 'https://suap.ifro.edu.br/eventos/inscricao/1/1324/' })).catch(falha)
   </script>
 </body>
 
